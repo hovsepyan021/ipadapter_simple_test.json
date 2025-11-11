@@ -1,0 +1,324 @@
+{
+  "input": {
+    "workflow": {
+      "3": {
+        "inputs": {
+          "seed": 558062721679995,
+          "steps": 20,
+          "cfg": 7,
+          "sampler_name": "dpmpp_2m_sde",
+          "scheduler": "karras",
+          "denoise": 0.5,
+          "model": [
+            "10",
+            0
+          ],
+          "positive": [
+            "6",
+            0
+          ],
+          "negative": [
+            "7",
+            0
+          ],
+          "latent_image": [
+            "32",
+            0
+          ]
+        },
+        "class_type": "KSampler",
+        "_meta": {
+          "title": "KSampler"
+        }
+      },
+      "4": {
+        "inputs": {
+          "ckpt_name": "realisticVisionV60B1_v51VAE.safetensors"
+        },
+        "class_type": "CheckpointLoaderSimple",
+        "_meta": {
+          "title": "CheckpointLoaderSimple"
+        }
+      },
+      "6": {
+        "inputs": {
+          "text": "painterly brush texture, soft pastel coloring, smooth shading and highlights, gentle lighting, semi-realistic children's book style, consistent color tone with background, high quality stylization, detailed hair texture, soft skin rendering, same scene and background, high-contrast lighting, rich warm tones, vivid hair color, natural skin hue, soft gradient shadows\n",
+          "clip": [
+            "4",
+            1
+          ]
+        },
+        "class_type": "CLIPTextEncode",
+        "_meta": {
+          "title": "CLIPTextEncode"
+        }
+      },
+      "7": {
+        "inputs": {
+          "text": "changed background, different environment, blurry edges, messy blending, extra elements, new objects, deformed proportions, photorealistic look, harsh lighting, sketch lines, oversaturated, low detail, inconsistent style, flat lighting, low contrast, gray tint, washed-out colors\n",
+          "clip": [
+            "4",
+            1
+          ]
+        },
+        "class_type": "CLIPTextEncode",
+        "_meta": {
+          "title": "CLIPTextEncode"
+        }
+      },
+      "8": {
+        "inputs": {
+          "samples": [
+            "3",
+            0
+          ],
+          "vae": [
+            "4",
+            2
+          ]
+        },
+        "class_type": "VAEDecode",
+        "_meta": {
+          "title": "VAEDecode"
+        }
+      },
+      "10": {
+        "inputs": {
+          "value": 0.9,
+          "model": [
+            "11",
+            0
+          ],
+          "ipadapter": [
+            "11",
+            1
+          ],
+          "image": [
+            "24",
+            0
+          ]
+        },
+        "class_type": "IPAdapter",
+        "_meta": {
+          "title": "IPAdapter"
+        }
+      },
+      "11": {
+        "inputs": {
+          "text": "PLUS FACE (portraits)",
+          "model": [
+            "4",
+            0
+          ]
+        },
+        "class_type": "IPAdapterUnifiedLoader",
+        "_meta": {
+          "title": "IPAdapterUnifiedLoader"
+        }
+      },
+      "12": {
+        "inputs": {
+          "image": "IMG_2914.PNG"
+        },
+        "class_type": "LoadImage",
+        "_meta": {
+          "title": "LoadImage"
+        }
+      },
+      "14": {
+        "inputs": {
+          "images": [
+            "30",
+            0
+          ]
+        },
+        "class_type": "PreviewImage",
+        "_meta": {
+          "title": "PreviewImage"
+        }
+      },
+      "15": {
+        "inputs": {
+          "image": "6901cd30c0b13d77261adbb1_final.png"
+        },
+        "class_type": "LoadImage",
+        "_meta": {
+          "title": "LoadImage"
+        }
+      },
+      "18": {
+        "inputs": {
+          "filename": "bbox/face_yolov8m.pt",
+          "image": [
+            "15",
+            0
+          ],
+          "swapped_image": [
+            "15",
+            0
+          ]
+        },
+        "class_type": "ReActorMaskHelper",
+        "_meta": {
+          "title": "ReActorMaskHelper"
+        }
+      },
+      "19": {
+        "inputs": {
+          "images": [
+            "18",
+            2
+          ]
+        },
+        "class_type": "PreviewImage",
+        "_meta": {
+          "title": "PreviewImage"
+        }
+      },
+      "21": {
+        "inputs": {
+          "pixels": [
+            "24",
+            0
+          ],
+          "vae": [
+            "4",
+            2
+          ]
+        },
+        "class_type": "VAEEncode",
+        "_meta": {
+          "title": "VAEEncode"
+        }
+      },
+      "24": {
+        "inputs": {
+          "value": 512,
+          "image": [
+            "12",
+            0
+          ]
+        },
+        "class_type": "ResizeAndPadImage",
+        "_meta": {
+          "title": "ResizeAndPadImage"
+        }
+      },
+      "25": {
+        "inputs": {
+          "value": true,
+          "input_image": [
+            "30",
+            0
+          ],
+          "source_image": [
+            "24",
+            0
+          ]
+        },
+        "class_type": "ReActorFaceSwap",
+        "_meta": {
+          "title": "ReActorFaceSwap"
+        }
+      },
+      "26": {
+        "inputs": {
+          "images": [
+            "25",
+            0
+          ]
+        },
+        "class_type": "PreviewImage",
+        "_meta": {
+          "title": "PreviewImage"
+        }
+      },
+      "29": {
+        "inputs": {
+          "text": "bilinear",
+          "image": [
+            "15",
+            0
+          ],
+          "mask": [
+            "18",
+            1
+          ]
+        },
+        "class_type": "InpaintCropImproved",
+        "_meta": {
+          "title": "InpaintCropImproved"
+        }
+      },
+      "30": {
+        "inputs": {
+          "stitcher": [
+            "29",
+            0
+          ],
+          "inpainted_image": [
+            "8",
+            0
+          ]
+        },
+        "class_type": "InpaintStitchImproved",
+        "_meta": {
+          "title": "InpaintStitchImproved"
+        }
+      },
+      "31": {
+        "inputs": {
+          "images": [
+            "29",
+            1
+          ]
+        },
+        "class_type": "PreviewImage",
+        "_meta": {
+          "title": "PreviewImage"
+        }
+      },
+      "32": {
+        "inputs": {
+          "pixels": [
+            "29",
+            1
+          ],
+          "vae": [
+            "4",
+            2
+          ]
+        },
+        "class_type": "VAEEncode",
+        "_meta": {
+          "title": "VAEEncode"
+        }
+      },
+      "33": {
+        "inputs": {
+          "images": [
+            "8",
+            0
+          ]
+        },
+        "class_type": "PreviewImage",
+        "_meta": {
+          "title": "PreviewImage"
+        }
+      },
+      "35": {
+        "inputs": {
+          "filename_prefix": "headswap_",
+          "images": [
+            "25",
+            0
+          ]
+        },
+        "class_type": "SaveImage",
+        "_meta": {
+          "title": "SaveImage"
+        }
+      }
+    }
+  }
+}
